@@ -19,50 +19,50 @@
     <script src="mirador/mirador.js"></script>
     <script type="text/javascript">
 
-     $(function() {
-       myMiradorInstance = Mirador({
-         id: "viewer",
-         layout: "1x1",
-         buildPath: "mirador/",
-         data: [
-           /* { manifestUri: "http://api.library.tamu.edu/iiif-service/presentation?path=mwbObjects/GreatWar", location: "Texas A&M University"} */
-         ],
-         windowObjects: [],
-         annotationEndpoint: {
-           name:"Local Storage",
-           module: "LocalStorageEndpoint"
-         },
-         "windowSettings": {
-           "canvasControls": { // The types of controls available to be displayed on a canvas
-             "imageManipulation" : {
-               "manipulationLayer" : true,
-               "controls" : {
-                 "mirror" : true
-               }
-             }
-           }
-         },
-	 "sidePanelOptions" : {
-	   "layersTabAvailable": true,
-           "tocTabAvailable": true,
-           "searchTabAvailable": true
-	 }
-       });
+      $(function() {
+        myMiradorInstance = Mirador({
+          id: "viewer",
+          layout: "1x1",
+          buildPath: "mirador/",
+          data: [
+            /* { manifestUri: "http://api.library.tamu.edu/iiif-service/presentation?path=mwbObjects/GreatWar", location: "Texas A&M University"} */
+          ],
+          windowObjects: [],
+          annotationEndpoint: {
+            name:"Local Storage",
+            module: "LocalStorageEndpoint"
+          },
+          "windowSettings": {
+            "canvasControls": { // The types of controls available to be displayed on a canvas
+              "imageManipulation" : {
+                "manipulationLayer" : true,
+                "controls" : {
+                  "mirror" : true
+                }
+              }
+            }
+          },
+          "sidePanelOptions" : {
+          "layersTabAvailable": true,
+          "tocTabAvailable": true,
+          "searchTabAvailable": true
+          }
+        });
 
-       var urlParams = new URLSearchParams(window.location.search);
-       var manifest = urlParams.get('manifest');
-       var view = urlParams.get('view');
-       if(manifest) {
-         myMiradorInstance.viewer.data.push({
-           manifestUri: manifest, location: "Texas A&M University"
-         });
-         myMiradorInstance.saveController.currentConfig.windowObjects.push({
-           loadedManifest: manifest,
-           viewType: view ? view : "ImageView"
-         });
-       }
+        var urlParams = new URLSearchParams(window.location.search);
+        var manifest = urlParams.get('manifest');
+        var view = urlParams.get('view');
+        if(manifest) {
+          myMiradorInstance.viewer.data.push({
+            manifestUri: manifest, location: "Texas A&M University"
+          });
+          myMiradorInstance.saveController.currentConfig.windowObjects.push({
+            loadedManifest: manifest,
+            viewType: view ? view : "ImageView"
+          });
+        }
 
-     });
+      });
 
 
     </script>
