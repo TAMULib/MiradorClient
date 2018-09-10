@@ -1,0 +1,97 @@
+function isEmpty(obj) {
+  var empty = true;
+  for (var prop in obj) {
+    if (obj.hasOwnProperty(prop)) {
+      empty = false;
+    }
+  }
+  return empty && JSON.stringify(obj) === JSON.stringify({});
+}
+
+$(function () {
+
+  var urlParams = new URLSearchParams(window.location.search);
+
+  var data = [
+
+  ];
+
+  var windowObjects = [];
+
+  var mainMenuSettings = {};
+
+  var queryData = {};
+
+  var queryWindowObject = {};
+
+  if (urlParams.has('manifest')) {
+    var manifest = urlParams.get('manifest');
+    console.log('loading', manifest);
+    queryData.manifestUri = manifest;
+    queryData.location = "Texas A&M University";
+    queryWindowObject.loadedManifest = manifest;
+  }
+
+  if (urlParams.has('canvas')) {
+    var canvas = urlParams.get('canvas').split(' ').join('%20');
+    console.log('viewing', canvas);
+    queryWindowObject.canvasID = canvas;
+  }
+
+  if (urlParams.has('view')) {
+    var view = urlParams.get('view');
+    if (view === 'ImageView') {
+      mainMenuSettings.show = false;
+      queryWindowObject.viewType = "ImageView";
+      queryWindowObject.displayLayout = false;
+      queryWindowObject.bottomPanel = false;
+      queryWindowObject.bottomPanelAvailable = false;
+      queryWindowObject.bottomPanelVisible = false;
+      queryWindowObject.sidePanel = false;
+      queryWindowObject.annotationLayer = false;
+    }
+  }
+
+  if (!isEmpty(queryData)) {
+    data.push(queryData);
+  }
+
+  if (!isEmpty(queryWindowObject)) {
+    windowObjects.push(queryWindowObject);
+  }
+
+  myMiradorInstance = Mirador({
+    id: "viewer",
+    layout: "1x1",
+    buildPath: "mirador/",
+    data: data,
+    windowObjects: windowObjects,
+    mainMenuSettings: mainMenuSettings,
+    annotationEndpoint: {
+      name: 'Simple Annotation Store Endpoint',
+      module: 'SimpleASEndpoint',
+      options: {
+        url: 'https://labs.library.tamu.edu/simpleAnnotationStore/annotation'
+      }
+    },
+    windowSettings: {
+      canvasControls: {
+        imageManipulation: {
+          manipulationLayer: true,
+          controls: {
+            mirror: true
+          }
+        }
+      }
+    },
+    sidePanelOptions: {
+      layersTabAvailable: true,
+      tocTabAvailable: true,
+      searchTabAvailable: true
+    },
+    manifestsPanel: {
+      module: "CollectionTreeManifestsPanel",
+    }
+  });
+});
+
