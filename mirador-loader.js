@@ -60,38 +60,15 @@ $(function () {
     windowObjects.push(queryWindowObject);
   }
 
-  myMiradorInstance = Mirador({
-    id: "viewer",
-    layout: "1x1",
-    buildPath: "mirador/",
-    data: data,
-    windowObjects: windowObjects,
-    mainMenuSettings: mainMenuSettings,
-    annotationEndpoint: {
-      name: 'Simple Annotation Store Endpoint',
-      module: 'SimpleASEndpoint',
-      options: {
-        url: 'https://labs.library.tamu.edu/simpleAnnotationStore/annotation'
-      }
-    },
-    windowSettings: {
-      canvasControls: {
-        imageManipulation: {
-          manipulationLayer: true,
-          controls: {
-            mirror: true
-          }
-        }
-      }
-    },
-    sidePanelOptions: {
-      layersTabAvailable: true,
-      tocTabAvailable: true,
-      searchTabAvailable: true
-    },
-    manifestsPanel: {
-      module: "CollectionTreeManifestsPanel",
-    }
-  });
+  if(isEmpty(miradorConfig.windowObjects)) {
+    miradorConfig.windowObjects = windowObjects;
+  }
+
+  if(isEmpty(miradorConfig.mainMenuSettings)) {
+    miradorConfig.mainMenuSettings = mainMenuSettings;
+  }
+
+  myMiradorInstance = Mirador(miradorConfig);
+
 });
 
