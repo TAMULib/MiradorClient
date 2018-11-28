@@ -56,11 +56,11 @@ $(function () {
     windowObjects.push(queryWindowObject);
   }
 
-  if(isEmpty(miradorConfig.windowObjects)) {
+  if(!isEmpty(windowObjects)) {
     miradorConfig.windowObjects = windowObjects;
   }
 
-  if(isEmpty(miradorConfig.mainMenuSettings)) {
+  if(!isEmpty(mainMenuSettings)) {
     miradorConfig.mainMenuSettings = mainMenuSettings;
   }
 
