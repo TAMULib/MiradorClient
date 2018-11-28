@@ -12,10 +12,6 @@ $(function () {
 
   var urlParams = new URLSearchParams(window.location.search);
 
-  var data = [
-
-  ];
-
   var windowObjects = [];
 
   var mainMenuSettings = {};
@@ -53,7 +49,7 @@ $(function () {
   }
 
   if (!isEmpty(queryData)) {
-    data.push(queryData);
+    miradorConfig.data.push(queryData);
   }
 
   if (!isEmpty(queryWindowObject)) {
