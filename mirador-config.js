@@ -2,7 +2,7 @@ var miradorConfig = {
   id: "viewer",
   layout: "1x1",
   buildPath: "mirador/",
-  data: data,
+  data: [],
   annotationEndpoint: {
     name: 'Simple Annotation Store Endpoint',
     module: 'SimpleASEndpoint',
