@@ -15,6 +15,8 @@ npm run build
 npm start
 ```
 
+http://localhost:4200
+
 ### Docker
 
 *requires build*
@@ -23,3 +25,5 @@ npm start
 docker build -t mirador .
 docker run -p 8080:80 mirador
 ```
+
+http://localhost:8080
