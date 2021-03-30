@@ -4,16 +4,20 @@
 
 ```
 npm install
-npm build
+npm run build
 ```
 
 ### Develop
+
+*requires build*
 
 ```
 npm start
 ```
 
 ### Docker
+
+*requires build*
 
 ```
 docker build -t mirador .
