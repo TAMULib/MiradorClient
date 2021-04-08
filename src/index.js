@@ -1,7 +1,8 @@
-import miradorAnnotationPlugins from 'mirador-annotations';
-import LocalStorageAdapter from 'mirador-annotations/lib/LocalStorageAdapter';
 import { miradorImageToolsPlugin } from 'mirador-image-tools';
 import Mirador from 'mirador/dist/es/src/index';
+import miradorAnnotationPlugins from 'tamu-mirador-annotations';
+import LocalStorageAdapter from 'tamu-mirador-annotations/lib/LocalStorageAdapter';
+import miradorDownloadPlugins from 'tamu-mirador-dl-plugin';
 
 const config = {
   id: 'viewer',
@@ -26,5 +27,6 @@ const config = {
 
 Mirador.viewer(config, [
   ...miradorImageToolsPlugin,
-  ...miradorAnnotationPlugins
+  ...miradorAnnotationPlugins,
+  ...miradorDownloadPlugins
 ]);
